@@ -9,7 +9,8 @@ import (
 
 func buildS6Affadavit(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
-		log.Fatal("server recieved non-POST request")
+		log.Println("ERROR: server recieved non-POST request")
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 	name := r.FormValue("name")
@@ -20,7 +21,9 @@ func buildS6Affadavit(w http.ResponseWriter, r *http.Request) {
 	defer doc.Close()
 	
 	if err != nil {
-		log.Fatal("the Affadavit file for section 6 could not be read")
+		log.Println("ERROR: the Affadavit file for section 6 could not be read")
+		w.WriteHeader(http.StatusInternalServerError)
+		return
 	}
 	affadavit := doc.Editable()
 	affadavit.Replace("FIRST_NAME", name, -1)
@@ -33,7 +36,8 @@ func buildS6Affadavit(w http.ResponseWriter, r *http.Request) {
 
 func buildS7Affadavit(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
-		log.Fatal("server recieved non-POST request")
+		log.Println("ERROR: server recieved non-POST request")
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 	name := r.FormValue("name")
@@ -45,7 +49,9 @@ func buildS7Affadavit(w http.ResponseWriter, r *http.Request) {
 	defer doc.Close()
 	
 	if err != nil {
-		log.Fatal("the Affadavit file for section 6 could not be read")
+		log.Println("ERROR: the Affadavit file for section 6 could not be read")
+		w.WriteHeader(http.StatusInternalServerError)
+		return
 	}
 	affadavit := doc.Editable()
 	affadavit.Replace("FIRST_NAME", name, -1)
