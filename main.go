@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"log"
+	"os"
 )
 
 func main() {
@@ -10,6 +11,11 @@ func main() {
 	mux.HandleFunc("/affadavit/s6", buildS6Affadavit)
 	mux.HandleFunc("/", renderForm)
 
-	log.Print("Listening...")
-	http.ListenAndServe(":8000", mux)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "0.0.0.0:8000"
+	}
+
+	log.Printf("Listening on %s...", port)
+	http.ListenAndServe(port, mux)
 }
