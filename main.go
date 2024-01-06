@@ -13,7 +13,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "0.0.0.0:8000"
+		port = "0.0.0.0:8080"
 	}
 
 	log.Printf("Listening on %s...", port)
