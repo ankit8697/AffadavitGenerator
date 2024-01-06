@@ -9,6 +9,7 @@ import (
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/affadavit/s6", buildS6Affadavit)
+	mux.HandleFunc("/affadavit/s7", buildS7Affadavit)
 	mux.HandleFunc("/", renderForm)
 
 	port := os.Getenv("PORT")
