@@ -13,9 +13,9 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "0.0.0.0:8080"
+		port = ":8080"
 	}
 
 	log.Printf("Listening on %s...", port)
-	http.ListenAndServe(port, mux)
+	http.ListenAndServe("0.0.0.0"+port, mux)
 }
