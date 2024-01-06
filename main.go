@@ -15,7 +15,7 @@ func main() {
 	if port == "" {
 		port = "8080"
 	}
-
-	log.Printf("Listening on %s...", "0.0.0.0:"+port)
-	log.Fatal(http.ListenAndServe("0.0.0.0:"+port, mux))
+	host := "0.0.0.0:"+port
+	log.Printf("Listening on %s...", host)
+	log.Fatal(http.ListenAndServe(host, mux))
 }
